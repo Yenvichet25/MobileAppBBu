@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/contact" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="10dp"
+            android:text="Name  :"
+            android:textSize="20dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/tvshowname"
+            android:layout_width="300dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="180dp"
+            android:text="Show Name"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="10dp"
+            android:text="Phone  :"
+            android:textSize="20dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/tvshowphone"
+            android:layout_width="300dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="220dp"
+            android:text="Show Phone"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="307dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="260dp"
+            android:text="Email  :"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvshowemail"
+            android:layout_width="300dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="260dp"
+            android:text="Show Email"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Call" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SMS" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Email" />
+    </LinearLayout>
+
+</RelativeLayout>

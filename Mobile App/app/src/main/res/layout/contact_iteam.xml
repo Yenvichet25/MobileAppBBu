@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="88dp"
+        android:layout_height="84dp"
+        android:layout_x="5dp"
+        android:layout_y="6dp"
+        app:srcCompat="@drawable/contact" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_x="104dp"
+        android:layout_y="15dp"
+        android:text="Name Contact" />
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_x="105dp"
+        android:layout_y="41dp"
+        android:text="Number Contact" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:layout_x="104dp"
+        android:layout_y="68dp"
+        android:text="Show Email"
+        tools:visibility="visible" />
+</AbsoluteLayout>
