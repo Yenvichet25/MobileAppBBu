@@ -21,4 +21,8 @@ public class MainApp extends AppCompatActivity {
         Intent in =new Intent(MainApp.this,ProductActivity.class);
         startActivity(in);
     }
+    public void ViewGroup(View v){
+        Intent in =new Intent(MainApp.this,MainGroupLayout.class);
+        startActivity(in);
+    }
 }

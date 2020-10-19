@@ -35,6 +35,14 @@
             android:label="List of Products"
             android:parentActivityName=".MainApp">
         </activity>
+
+        <activity
+            android:name=".MainGroupLayout"
+            android:label="List of Groups"
+            android:parentActivityName=".MainApp"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            >
+        </activity>
     </application>
 
 </manifest>
