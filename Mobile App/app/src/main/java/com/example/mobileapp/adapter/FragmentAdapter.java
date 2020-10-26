@@ -29,6 +29,9 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     }
     @Override
     public CharSequence getPageTitle(int position) {
+        // want to show title with icon
         return lstTtile.get(position);
+        // want to show icon only
+        //        return null;
     }
 }
