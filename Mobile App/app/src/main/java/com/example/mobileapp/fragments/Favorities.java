@@ -18,8 +18,8 @@ public class Favorities extends Fragment {
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         ContactItems[] contact = new ContactItems[]{
                 new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"),
-                new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"),
-                new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com")
+                new ContactItems(R.drawable.group,"Leo","09865880","dara@gmail.com"),
+                new ContactItems(R.drawable.group,"Cambodia Beer","09890540","thida@gmail.com")
         };
         View v = inflater.inflate(R.layout.tab_favarities,container,false);
 

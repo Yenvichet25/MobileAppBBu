@@ -32,9 +32,9 @@ public class Contact extends Fragment implements AdapterView.OnItemClickListener
         View v = inflater.inflate(R.layout.tab_contact_layout,container,false);
 
         listContact.add(new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"));
-        listContact.add(new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"));
-        listContact.add(new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"));
-        listContact.add(new ContactItems(R.drawable.group,"ABC Beer","09890880","kakaka@gmail.com"));
+        listContact.add(new ContactItems(R.drawable.group,"Leo Beer","09890880","dara@gmail.com"));
+        listContact.add(new ContactItems(R.drawable.group,"Cambodia Beer","09890880","thida@gmail.com"));
+        listContact.add(new ContactItems(R.drawable.group,"Corona Beer","09890880","nan@gmail.com"));
 
         ContactAdapter adapter = new ContactAdapter(getContext(),listContact);
        ListView LV = (ListView) v.findViewById(R.id.LvTabContact);

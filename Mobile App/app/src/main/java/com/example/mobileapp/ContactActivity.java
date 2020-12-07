@@ -49,7 +49,7 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
 
         final String[] action = {"Add New","Edit","Delete","View","Add To Favorites"};
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
-        ad.setItems(action, new DialogInterface.OnClickListener() {
+         ad.setItems(action, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 Toast.makeText(ContactActivity.this,action[i],Toast.LENGTH_LONG).show();

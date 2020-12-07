@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<group>
+        <item
+            android:id="@+id/mnHome"
+            android:icon="@drawable/ic_home_24"
+            android:title="home" />
+        <item
+            android:id="@+id/mnProduct"
+            android:icon="@drawable/ic_product"
+            android:title="product" />
+        <item
+            android:id="@+id/mnContact"
+            android:icon="@drawable/contact"
+            android:title="contact" />
+        <item
+            android:id="@+id/mnSell"
+            android:icon="@drawable/ic_sell_24"
+            android:title="sell" />
+</group>
+    <item
+        android:id="@+id/mnNetwork"
+        android:title="Social Network">
+        <menu>
+            <item
+                android:id="@+id/mnFaceBook"
+                android:icon="@drawable/ic_share_24"
+                android:title="Browser" />
+
+            <item
+                android:id="@+id/mnTwitter"
+                android:icon="@drawable/ic_browser_24"
+                android:title="Twitter" />
+        </menu>
+    </item>
+</menu>

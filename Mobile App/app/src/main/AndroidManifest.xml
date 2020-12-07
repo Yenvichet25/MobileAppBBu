@@ -23,7 +23,10 @@
         </activity>
         <activity
             android:name=".MainApp"
-            android:label="Main App">
+            android:label="Main App"
+            android:theme="@style/NoActionBar"
+
+            >
         </activity>
         <activity
             android:name=".ContactDetail"
