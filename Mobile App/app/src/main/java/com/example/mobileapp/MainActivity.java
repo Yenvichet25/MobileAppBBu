@@ -35,4 +35,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    public  void GoToSignUp(View view){
+        Intent signup = new Intent(MainActivity.this,RegisterUserActivity.class);
+        startActivity(signup);
+    }
 }

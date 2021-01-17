@@ -46,6 +46,13 @@
             android:theme="@style/NoActionBar"
             >
         </activity>
+
+        <activity
+            android:name=".RegisterUserActivity"
+            android:label="Register User"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
     </application>
 
 </manifest>

@@ -1,8 +1,12 @@
 package com.example.mobileapp;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +36,13 @@ public class ProductActivity extends AppCompatActivity {
 
         ProductAdapter adapter = new ProductAdapter(this,R.layout.product_item,lstProduct);
         gridView.setAdapter(adapter);
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                TextView name = (TextView) view.findViewById(R.id.tvProductName);
+                Toast.makeText(ProductActivity.this,""+name.getText(),Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 }
