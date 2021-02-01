@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apache.http.HttpResponse;
@@ -17,8 +19,12 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +38,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         txtname = (EditText) findViewById(R.id.txtUsernameRegister);
         txtpwd = (EditText) findViewById(R.id.txtPasswordRegister);
     }
-    public  void Register(View view){
+    public  void RegisterUser(View view){
         String url = getText(R.string.appUrl).toString() +"register_user.php";
         String name = txtname.getText().toString();
         String pwd = txtpwd.getText().toString();
@@ -47,7 +53,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         private JSONObject object;
 
         // Constructor
-
         public  RequestRegister (Context context){
             this.context = context;
         }
@@ -81,16 +86,33 @@ public class RegisterUserActivity extends AppCompatActivity {
                 //write errors  to log
                 Log.d("HttpResponse",response.toString());
 
-
+                InputStream is = response.getEntity().getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                StringBuffer result = new StringBuffer();
+                String line = "";
+                while ((line = reader.readLine()) !=null){
+                    result.append(line + "\n");
+                }
+                return  result.toString();
             }catch (Exception e){
-                e.printStackTrace();
+                return null;
             }
-            return null;
+
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            try {
+                object = new JSONObject(s);
+                if(object.getInt("success")==1){
+                    Toast.makeText(context,object.getString("msg_success"),Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context,object.getString("msg_errors"),Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             if(dialog.isShowing()){
                 dialog.dismiss();
             }
