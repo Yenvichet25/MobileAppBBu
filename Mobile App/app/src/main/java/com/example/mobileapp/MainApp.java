@@ -1,10 +1,15 @@
 package com.example.mobileapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +22,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainApp extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private Sessions sessions;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sessions = new Sessions(this);
         setContentView(R.layout.navigation_layout);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -32,7 +39,26 @@ public class MainApp extends AppCompatActivity implements NavigationView.OnNavig
 
         NavigationView nav = (NavigationView) findViewById(R.id.navId);
         nav .setNavigationItemSelectedListener(this);
+
+        View v = nav.getHeaderView(0);
+        TextView logname = (TextView) v.findViewById(R.id.tvHeaderLogName);
+        logname.setText(sessions.getUsername());
+
+        TextView logemail = (TextView) v.findViewById(R.id.tvHeaderLogEmail);
+        logemail.setText(sessions.getUserEmail());
+
+        ImageView img = (ImageView) v.findViewById(R.id.imgHeader);
+        Bitmap bitmap = StringToImage(sessions.getUserImg());
+        img.setImageBitmap(bitmap);
     }
+
+    private Bitmap StringToImage(String userImg) {
+        Bitmap bitmap = null;
+        byte[] image = Base64.decode(userImg,Base64.DEFAULT);
+        bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
+        return  bitmap;
+    }
+
     public void ViewContact(View v){
         Intent in =new Intent(MainApp.this,ContactActivity.class);
         startActivity(in);

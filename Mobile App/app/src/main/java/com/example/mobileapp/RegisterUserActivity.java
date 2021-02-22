@@ -95,6 +95,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 }
                 return  result.toString();
             }catch (Exception e){
+                e.printStackTrace();
                 return null;
             }
 
@@ -103,18 +104,20 @@ public class RegisterUserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            try {
-                object = new JSONObject(s);
-                if(object.getInt("success")==1){
-                    Toast.makeText(context,object.getString("msg_success"),Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(context,object.getString("msg_errors"),Toast.LENGTH_LONG).show();
+            if(s != null){
+                try {
+                    object = new JSONObject(s);
+                    if(object.getInt("success")==1){
+                        Toast.makeText(context,object.getString("msg_success"),Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(context,object.getString("msg_errors"),Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if(dialog.isShowing()){
-                dialog.dismiss();
+                if(dialog.isShowing()) {
+                    dialog.dismiss();
+                }
             }
         }
 

@@ -28,20 +28,24 @@ public class Sessions {
         sp.edit().putString("USERIMAGE",UserImg).commit();
     }
     //getter method
-    public int getUserId(int userId){
+    public int getUserId(){
         int id = sp.getInt("USERID",0);
         return id;
     }
-    public String getUsername(String username){
+    public String getUsername(){
+
         return sp.getString("USERNAME","");
     }
-    public String getPassword(String password){
+    public String getPassword(){
+
         return sp.getString("USERPASSWORD","");
     }
-    public String getUserEmail(String userEmail){
+    public String getUserEmail()
+    {
         return sp.getString("USEREMAIL","");
     }
-    public String getUserImg(String userImg){
+    public String getUserImg(){
+
         return sp.getString("USERIMAGE","");
     }
     public  void ClearSessions(){

@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_layout);
         sessions = new Sessions(this);
+        setContentView(R.layout.login_layout);
+
     }
     public void Login(View v){
         EditText name = (EditText) findViewById(R.id.txtname);
@@ -120,11 +121,11 @@ public class MainActivity extends AppCompatActivity {
                try {
                    JSONObject object = new JSONObject(result);
                    if(object.getInt("success")==1){
-                       sessions.getUserId(object.getInt("UserId"));
-                       sessions.getUsername(object.getString("Username"));
-                       sessions.getPassword(object.getString("Password"));
-                       sessions.getUserEmail(object.getString("UserEmail"));
-                       sessions.getUserImg(object.getString("UserImg"));
+                       sessions.setUserId(object.getInt("UserId"));
+                       sessions.setUsername(object.getString("Username"));
+                       sessions.setPassword(object.getString("Password"));
+                       sessions.setUserEmail(object.getString("UserEmail"));
+                       sessions.setUserImg(object.getString("UserImg"));
                        //setContentView(R.layout.main_menu);
                        Intent in = new Intent(MainActivity.this,MainApp.class);
                        startActivity(in);
