@@ -35,4 +35,13 @@
                 android:title="Twitter" />
         </menu>
     </item>
+    <item
+        android:title="You Need Logout?">
+        <menu>
+            <item
+                android:id="@+id/menuLogout"
+                android:icon="@drawable/ic_baseline_vpn_key_24"
+                android:title="Logout" />
+        </menu>
+    </item>
 </menu>

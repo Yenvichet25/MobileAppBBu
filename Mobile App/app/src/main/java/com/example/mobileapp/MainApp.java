@@ -8,6 +8,8 @@ import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainApp extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Sessions sessions;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,16 @@ public class MainApp extends AppCompatActivity implements NavigationView.OnNavig
 
         ImageView img = (ImageView) v.findViewById(R.id.imgHeader);
         Bitmap bitmap = StringToImage(sessions.getUserImg());
-        img.setImageBitmap(bitmap);
+        img.setImageBitmap(Bitmap.createScaledBitmap(bitmap,190,200,false));
+
+        ImageButton btn = (ImageButton) v .findViewById(R.id.btneditImgPro);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(MainApp.this,EditProfileActivity.class);
+                startActivity(in);
+            }
+        });
     }
 
     private Bitmap StringToImage(String userImg) {
