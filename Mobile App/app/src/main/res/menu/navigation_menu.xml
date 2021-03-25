@@ -36,6 +36,15 @@
         </menu>
     </item>
     <item
+        android:title="You want to change your password?">
+        <menu>
+            <item
+                android:id="@+id/menuchangepwd"
+                android:icon="@drawable/ic_baseline_screen_lock_portrait_24"
+                android:title="Change Password" />
+        </menu>
+    </item>
+    <item
         android:title="You Need Logout?">
         <menu>
             <item

@@ -96,6 +96,14 @@ public class MainApp extends AppCompatActivity implements NavigationView.OnNavig
         }else if(id == R.id.mnHome){
             Intent in =new Intent(MainApp.this,MainGroupLayout.class);
             startActivity(in);
+        }else if(id == R.id.menuLogout){
+            sessions.ClearSessions();
+            Intent in =new Intent(MainApp.this,MainActivity.class);
+            startActivity(in);
+            finish();
+        }else if(id == R.id.menuchangepwd){
+            Intent in =new Intent(MainApp.this,CheckCurrentPassword.class);
+            startActivity(in);
         }
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);

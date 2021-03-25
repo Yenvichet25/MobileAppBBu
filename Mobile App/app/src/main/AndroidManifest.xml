@@ -64,6 +64,17 @@
             android:label="Edit Profile"
             android:parentActivityName=".MainApp">
         </activity>
+
+        <activity
+            android:name=".CheckCurrentPassword"
+            android:label="Current Password"
+            android:parentActivityName=".MainApp">
+        </activity>
+        <activity
+            android:name=".ChangeNewPassword"
+            android:label="New Password"
+            android:parentActivityName=".MainApp">
+        </activity>
     </application>
 
 </manifest>
