@@ -1,11 +1,11 @@
 package com.example.mobileapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,13 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,8 +22,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +41,41 @@ public class ChangeNewPassword extends AppCompatActivity {
         txtNewpass = (EditText) findViewById(R.id.txtNewPass);
         txtcomfirmpass = (EditText) findViewById(R.id.txtConfirmNewPass);
     }
-    public  void UpdateUserPwd(View view){
-
+    public  void UpdateUserPwd(View view) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (txtNewpass.getText().toString().equals("")) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Please enter your new password")
+                    .setPositiveButton("ok",null)
+                    .show();
+            txtNewpass.requestFocus();
+        } else if (txtcomfirmpass.getText().toString().equals("")) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Please enter your confirm password")
+                    .setPositiveButton("ok",null)
+                    .show();
+            txtcomfirmpass.requestFocus();
+        }else{
+            String strNewPwd = SHA1.EncryptPassword(txtNewpass.getText().toString());
+            if (strNewPwd.equals(sessions.getPassword())) {
+                new AlertDialog.Builder(this)
+                        .setMessage("Your password is the same current password.Please enter new password again")
+                        .setPositiveButton("ok",null)
+                        .show();
+            }else{
+                if (txtNewpass.getText().toString().equals(txtcomfirmpass.getText().toString())) {
+                    String url = getText(R.string.appUrl).toString()+"change_user_password.php";
+                    String password = txtNewpass.getText().toString();
+                    //change password
+                    RequestEditProfile update = new RequestEditProfile(this);
+                    update.execute(url,password,""+sessions.getUserId());
+                }else{
+                    new AlertDialog.Builder(this)
+                            .setMessage("Your password does not match your confirm password.Please try again")
+                            .setPositiveButton("ok",null)
+                            .show();
+                }
+            }
+        }
     }
     public  class RequestEditProfile extends AsyncTask<String,Void,String> {
         private Context context;
@@ -121,11 +149,17 @@ public class ChangeNewPassword extends AppCompatActivity {
                 try {
                     object = new JSONObject(result);
                     if(object.getInt("success")==1){
+                        String strNewPwd = SHA1.EncryptPassword(txtNewpass.getText().toString());
+                        sessions.setPassword(strNewPwd);
                         Toast.makeText(context,object.getString("msg_success"),Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(context,object.getString("msg_errors"),Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
                 if(dialog.isShowing()) {

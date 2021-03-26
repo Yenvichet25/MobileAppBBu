@@ -10,8 +10,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class CheckCurrentPassword extends AppCompatActivity {
@@ -32,7 +30,7 @@ public class CheckCurrentPassword extends AppCompatActivity {
                     .show();
             txtcurrentpass.requestFocus();
         }else{
-            String PWD = EncryptPassword(txtcurrentpass.getText().toString());
+            String PWD = SHA1.EncryptPassword(txtcurrentpass.getText().toString());
             if(sessions.getPassword().equals(PWD)){
                 Intent in = new Intent(CheckCurrentPassword.this,ChangeNewPassword.class);
                 startActivity(in);
@@ -45,10 +43,5 @@ public class CheckCurrentPassword extends AppCompatActivity {
             }
         }
     }
-    public static String EncryptPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
-        md.reset();
-        md.update(password.getBytes("UTF-8"));
-        return  new BigInteger(1,md.digest()).toString(16);
-    }
+
 }
