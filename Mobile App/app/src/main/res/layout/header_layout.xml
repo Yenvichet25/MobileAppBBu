@@ -4,25 +4,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
-    android:paddingTop="30dp"
+    android:paddingTop="45dp"
     android:paddingLeft="15dp"
     android:paddingBottom="15dp"
-
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imgHeader"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/group" />
-
-    <ImageButton
-        android:id="@+id/btneditImgPro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_edit_24"></ImageButton>
-
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgHeader"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#0ff"
+            app:srcCompat="@drawable/group" />
+        <ImageButton
+            android:id="@+id/btneditImgPro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/ic_baseline_edit_24">
+        </ImageButton>
+    </LinearLayout>
     <TextView
         android:id="@+id/tvHeaderLogName"
         android:layout_width="match_parent"

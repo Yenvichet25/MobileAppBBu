@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
-        android:layout_width="88dp"
+        android:layout_width="85dp"
         android:layout_height="84dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#09f"
         android:layout_x="5dp"
         android:layout_y="6dp"
         app:srcCompat="@drawable/contact" />

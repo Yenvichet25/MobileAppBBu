@@ -21,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobileapp.function.ConvertImages;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -59,7 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
         editEmail = (EditText) findViewById(R.id.txteditproemail);
         editEmail.setText(sessions.getUserEmail());
 
-        bitmap = StringToImage(sessions.getUserImg());
+        bitmap = ConvertImages.StringToImage(sessions.getUserImg());
         editImage = (ImageView) findViewById(R.id.imgEditProPhoto);
         editImage.setImageBitmap(bitmap);
         editImage.setImageBitmap(Bitmap.createScaledBitmap(bitmap,200,210,false));
@@ -120,12 +122,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    private Bitmap StringToImage(String userImg) {
-        Bitmap bitmap = null;
-        byte[] image = Base64.decode(userImg,Base64.DEFAULT);
-        bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
-        return  bitmap;
-    }
+
 
     public  class RequestEditProfile extends AsyncTask<String,Void,String>{
         private Context context;
@@ -212,15 +209,10 @@ public class EditProfileActivity extends AppCompatActivity {
         String id = ""+sessions.getUserId();
         String name = editName.getText().toString();
         String email = editEmail.getText().toString();
-        String img = ImageToString(bitmap);
+        String img = ConvertImages.ImageToString(bitmap);
         RequestEditProfile editProfile = new RequestEditProfile(this);
         editProfile.execute(url,id,name,email,img);
     }
 
-    private String ImageToString(Bitmap bitmap) {
-        ByteArrayOutputStream byteArr = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArr);
-        byte[] Bytes = byteArr.toByteArray();
-        return Base64.encodeToString(Bytes,Base64.DEFAULT);
-    }
+
 }

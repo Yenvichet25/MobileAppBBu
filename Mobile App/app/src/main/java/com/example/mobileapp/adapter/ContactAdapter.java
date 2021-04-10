@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobileapp.R;
 import com.example.mobileapp.models.ContactItems;
 
@@ -42,8 +43,10 @@ public class ContactAdapter extends BaseAdapter {
         View v=View.inflate(context,R.layout.contact_iteam,null);
         ContactItems contact = lstcontact.get(i);
         ImageView img = (ImageView) v.findViewById(R.id.imageView);
-        img.setImageResource(contact.getImageId());
-        img.setTag(""+contact.getImageId());
+//        img.setImageResource(contact.getImageId());
+//        img.setTag(""+contact.getImageId());
+        Glide.with(context).load(contact.getImageURL()).into(img);
+
 
         TextView name = (TextView) v.findViewById(R.id.tvName);
         name.setText(contact.getContactName());

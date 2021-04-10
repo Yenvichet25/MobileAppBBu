@@ -34,11 +34,11 @@
 
             >
         </activity>
-        <activity
-            android:name=".ContactDetail"
-            android:label="Contact Detail"
-            android:parentActivityName=".ContactActivity">
-        </activity>
+<!--        <activity-->
+<!--            android:name=".ContactDetail"-->
+<!--            android:label="Contact Detail"-->
+<!--            android:parentActivityName=".ContactActivity">-->
+<!--        </activity>-->
         <activity
             android:name=".ProductActivity"
             android:label="List of Products"
@@ -73,6 +73,11 @@
         <activity
             android:name=".ChangeNewPassword"
             android:label="New Password"
+            android:parentActivityName=".MainApp">
+        </activity>
+        <activity
+            android:name=".AddNewContacts"
+            android:label="New Contact"
             android:parentActivityName=".MainApp">
         </activity>
     </application>

@@ -9,28 +9,30 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobileapp.function.SHA1;
+
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public class CheckCurrentPassword extends AppCompatActivity {
     private Sessions sessions;
-    private EditText txtcurrentpass;
+    private EditText txtcurrentPWD;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_current_password);
         sessions = new Sessions(this);
-        txtcurrentpass = (EditText) findViewById(R.id.txtcheckcurrentpass);
+        txtcurrentPWD = (EditText) findViewById(R.id.txtcheckcurrentpass);
     }
     public  void CheckCurrentPWD(View view) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        if(txtcurrentpass.getText().toString().equals("")){
+        if(txtcurrentPWD.getText().toString().equals("")){
             new AlertDialog.Builder(this)
                     .setMessage("Please enter your current password!")
                     .setPositiveButton("Ok",null)
                     .show();
-            txtcurrentpass.requestFocus();
+            txtcurrentPWD.requestFocus();
         }else{
-            String PWD = SHA1.EncryptPassword(txtcurrentpass.getText().toString());
+            String PWD = SHA1.EncryptPassword(txtcurrentPWD.getText().toString());
             if(sessions.getPassword().equals(PWD)){
                 Intent in = new Intent(CheckCurrentPassword.this,ChangeNewPassword.class);
                 startActivity(in);

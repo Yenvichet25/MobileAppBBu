@@ -90,9 +90,6 @@ public class MainApp extends AppCompatActivity implements NavigationView.OnNavig
         if(id == R.id.mnProduct){
             Intent in =new Intent(MainApp.this,ProductActivity.class);
             startActivity(in);
-        }else if(id == R.id.mnContact){
-            Intent in =new Intent(MainApp.this,ContactActivity.class);
-            startActivity(in);
         }else if(id == R.id.mnHome){
             Intent in =new Intent(MainApp.this,MainGroupLayout.class);
             startActivity(in);
@@ -103,6 +100,9 @@ public class MainApp extends AppCompatActivity implements NavigationView.OnNavig
             finish();
         }else if(id == R.id.menuchangepwd){
             Intent in =new Intent(MainApp.this,CheckCurrentPassword.class);
+            startActivity(in);
+        }else if(id == R.id.menuAddcontact){
+            Intent in =new Intent(MainApp.this,AddNewContacts.class);
             startActivity(in);
         }
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

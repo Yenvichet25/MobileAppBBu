@@ -11,10 +11,10 @@
             android:id="@+id/mnProduct"
             android:icon="@drawable/ic_product"
             android:title="product" />
-        <item
-            android:id="@+id/mnContact"
-            android:icon="@drawable/contact"
-            android:title="contact" />
+    <item
+        android:id="@+id/menuAddcontact"
+        android:icon="@drawable/ic_baseline_person_add_24"
+        android:title="Add New Contacts" />
         <item
             android:id="@+id/mnSell"
             android:icon="@drawable/ic_sell_24"

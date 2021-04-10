@@ -7,11 +7,13 @@
     android:padding="25dp"
     android:layout_height="match_parent">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgEditProPhoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="148dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#09f"
         android:layout_marginTop="15dp"
         app:srcCompat="@drawable/contact" />
 
@@ -19,7 +21,7 @@
         android:id="@+id/txteditproname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Enter Your Username"
         android:inputType="textPersonName" />

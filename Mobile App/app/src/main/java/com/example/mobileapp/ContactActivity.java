@@ -2,7 +2,9 @@ package com.example.mobileapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -16,11 +18,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobileapp.adapter.ContactAdapter;
 import com.example.mobileapp.models.ContactItems;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     List<ContactItems> lstContact = new ArrayList<ContactItems>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +44,67 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
         //show layout
         setContentView(R.layout.contact_layout);
 
-        lstContact.add(new ContactItems(R.drawable.contact,"Dara","01267687","dara@gmail.com"));
-        lstContact.add(new ContactItems(R.drawable.group,"Sok kha","012123445","sokkha009@gmail.com"));
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            String strUrl = getText(R.string.appUrl).toString() + "show_contact.php";
+            String imgPath = getText(R.string.appUrl).toString()+ "contacts/";
+            //createUrl
+            URL url = new URL(strUrl);
+            //httpUrlConnection
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //configureURl
+            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(15000);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            //build post parameters
+            Uri.Builder builder = new Uri.Builder()
+                    .appendQueryParameter("ContactTag","showcontact");
+            String query = builder.build().getEncodedQuery();
+            //open connection
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+            //check connection and read to data
+            StringBuffer buffer = new StringBuffer();
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                //read data
+                InputStream is = conn.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+                String line = "";
+                while ((line = reader.readLine()) !=null){
+                    buffer.append(line + "\n");
+                }
+                JSONObject obj = new JSONObject(buffer.toString());
+                JSONArray arr = obj.getJSONArray("contacts");
+                for(int i = 0; i<arr.length(); i++){
+                    JSONObject object = arr.getJSONObject(i);
+                    lstContact.add(new ContactItems(
+                            imgPath + object.getString("ContactImage"),
+                            object.getString("ContactName"),
+                            object.getString("ContactNumber"),
+                            object.getString("ContactEmail")));
+                }
+            }else{
+                new AlertDialog.Builder(ContactActivity.this)
+                        .setMessage("Failed to connection.")
+                        .setPositiveButton("Ok",null)
+                        .show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ContactAdapter adapter = new ContactAdapter(this,lstContact);
         ListView LV = (ListView) findViewById(R.id.Lvcontact);
         LV.setAdapter(adapter);
-
         LV.setOnItemClickListener(this);
         LV.setOnItemLongClickListener(this);
     }

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobileapp.function.SHA1;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,8 +28,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChangeNewPassword extends AppCompatActivity {
     private Sessions sessions;
@@ -55,7 +55,7 @@ public class ChangeNewPassword extends AppCompatActivity {
                     .show();
             txtcomfirmpass.requestFocus();
         }else{
-            String strNewPwd = SHA1.EncryptPassword(txtNewpass.getText().toString());
+           String strNewPwd  = SHA1.EncryptPassword(txtNewpass.getText().toString());
             if (strNewPwd.equals(sessions.getPassword())) {
                 new AlertDialog.Builder(this)
                         .setMessage("Your password is the same current password.Please enter new password again")
@@ -139,8 +139,8 @@ public class ChangeNewPassword extends AppCompatActivity {
                 return result.toString();
             }catch (Exception e){
                 e.printStackTrace();
-                return null;
             }
+            return null;
         }
 
         @Override
